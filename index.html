@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Ticket Booking</title>
+    <style>
+        body{
+            background-image: url(/bus.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+label {
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+button {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+    </style>
+</head>
+<body >
+    <bg image="bus.jpg"></bg>
+    <div class="container">
+        <h1>Online Ticket Booking</h1>
+        <form id="bookingForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required><br>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required><br>
+            <label for="From">From:</label>
+            <input type="text" id="From" name="From" required><br>
+            <label for="TO">To:</label>
+            <input type="text" id="To" name="To" required><br>
+            <label for="tickets">Number of Tickets:</label>
+            <input type="number" id="tickets" name="tickets" min="1" required><br>
+            <button type="submit">Book Tickets</button>
+        </form>
+        <div id="confirmation"></div>
+    </div>
+
+    <script>
+        document.getElementById('bookingForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    // Fetching form data
+    const formData = new FormData(event.target);
+
+    // Extracting form values
+    const name = formData.get('name');
+    const email = formData.get('email');
+    const tickets = formData.get('tickets');
+
+    // Displaying confirmation message
+    const confirmationDiv = document.getElementById('confirmation');
+    confirmationDiv.innerHTML = `
+        <p>Thank you, ${name}!</p>
+        <p>You have successfully booked ${tickets} tickets.</p>
+        <p>We have sent a confirmation email to ${email}.</p>
+    `;
+});
+
+
+    </script>
+</body>
+</html>
